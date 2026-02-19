@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RUY Train — Admin Spin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="hero__inner">
+        <h1 class="title">RUY — ADMIN WHEEL</h1>
+        <p class="subtitle">Upload names → spin → share the winners link</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="row row--between row--wrap">
+        <div>
+          <h2 class="h2">Name List</h2>
+          <p class="muted small">
+            Upload a .txt or .csv (one name per line). Comma/semicolon separated also works.
+          </p>
+        </div>
+        <div class="pill" id="loadedCount">0 names</div>
+      </div>
+
+      <div class="controls">
+        <label class="file">
+          <input type="file" id="fileInput" accept=".txt,.csv" />
+          <span>Upload name list</span>
+        </label>
+
+        <label class="toggle">
+          <input type="checkbox" id="dedupe" checked />
+          <span>Remove duplicates</span>
+        </label>
+
+        <button class="btn" id="spinBtn" disabled>🎡 Spin the wheel</button>
+        <button class="btn btn--ghost" id="resetBtn">↻ New week / reset</button>
+      </div>
+
+      <div class="stage">
+        <div class="wheelWrap">
+          <div class="pointer" aria-hidden="true"></div>
+          <canvas id="wheel" width="560" height="560"></canvas>
+        </div>
+
+        <div class="results">
+          <h3 class="h3">Result</h3>
+
+          <div class="winner smallBox">
+            <div class="winner__label">TRAIN CONDUCTOR</div>
+            <div class="winner__name" id="rConductor">—</div>
+          </div>
+
+          <div class="winner smallBox">
+            <div class="winner__label">VIP PASSENGER</div>
+            <div class="winner__name" id="rVip">—</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3 class="h3">Shareable link</h3>
+          <p class="muted small">Copy this link and paste it into Discord/Line/etc.</p>
+
+          <div class="share">
+            <input id="shareLink" readonly value="(the link will appear here after a spin)" />
+            <button class="btn btn--small" id="copyBtn" disabled>Copy</button>
+          </div>
+
+          <p class="muted tiny" id="weekAdminLabel">Week: —</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="muted small">Tip: bookmark admin.html</span>
+    </footer>
+  </main>
+
+  <script src="wheel.js"></script>
+</body>
+</html>
